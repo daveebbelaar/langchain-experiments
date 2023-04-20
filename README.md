@@ -17,5 +17,5 @@ git clone https://github.com/your-username/langchain-experiments.git
 ```
 
 ## Tutorials
-For video tutorials on how to use the LangChain library and run experiments, visit the YouTube channel: youtube.com/@daveebbelaar
+For video tutorials on how to use the LangChain library and run experiments, visit the YouTube channel: [youtube.com/@daveebbelaar](youtube.com/@daveebbelaar)
 
