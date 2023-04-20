@@ -63,7 +63,7 @@ pip install -r requirements.txt
 
 4. Set up the keys in a .env file:
 
-First, create a .env file in the root directory of the project. Inside the file, add your OpenAI API key:
+First, create a `.env` file in the root directory of the project. Inside the file, add your OpenAI API key:
 
 ```makefile
 OPENAI_API_KEY=your_api_key_here
@@ -71,7 +71,7 @@ OPENAI_API_KEY=your_api_key_here
 
 Save the file and close it.
 
-In your Python script or Jupyter notebook, load the .env file using the following code:
+In your Python script or Jupyter notebook, load the `.env` file using the following code:
 ```python
 from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv())
@@ -79,7 +79,7 @@ load_dotenv(find_dotenv())
 
 By using the right naming convention for the environment variable, you don't have to manually store the key in a separate variable and pass it to the function. The library or package that requires the API key will automatically recognize the `OPENAI_API_KEY` environment variable and use its value.
 
-When needed, you can access the OPENAI_API_KEY as an environment variable:
+When needed, you can access the `OPENAI_API_KEY` as an environment variable:
 ```python
 import os
 api_key = os.environ['OPENAI_API_KEY']
