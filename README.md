@@ -24,7 +24,7 @@ By selling LangChain-based applications as a service to businesses, you can prov
 
 ## Requirements
 
-- Python 3.6 or higher
+- [Python 3.6 or higher](https://www.python.org/downloads/)
 - [LangChain library](https://python.langchain.com/en/latest/index.html)
 - [OpenAI API key](https://platform.openai.com/)
 - [SerpAPI API Key](https://serpapi.com/)
