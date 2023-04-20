@@ -29,6 +29,9 @@ By selling LangChain-based applications as a service to businesses, you can prov
 - [OpenAI API key](https://platform.openai.com/)
 - [SerpAPI API Key](https://serpapi.com/)
 
+## OpenAI API Models
+The OpenAI API is powered by a diverse set of [models](https://platform.openai.com/docs/models) with different capabilities and price points. You can also make limited customizations to our original base models for your specific use case with fine-tuning.
+
 ## Installation
 
 1. Clone the repository:
@@ -36,6 +39,30 @@ By selling LangChain-based applications as a service to businesses, you can prov
 ```bash
 git clone https://github.com/your-username/langchain-experiments.git
 ```
+
+2. Create a Python environment with Python 3.6 or higher using `venv` or `conda`.
+
+Using `venv`:
+
+``` bash
+cd langchain-experiments
+python3 -m venv env
+source env/bin/activate
+```
+
+Using `conda`:
+``` bash
+cd langchain-experiments
+conda create --name langchain-env python=3.6
+conda activate langchain-env
+```
+
+3. Install the required dependencies:
+``` bash
+pip install -r requirements.txt
+```
+
+Now your Python environment is set up, and you can proceed with running the experiments.
 
 ## Tutorials
 For video tutorials on how to use the LangChain library and run experiments, visit the YouTube channel: [youtube.com/@daveebbelaar](youtube.com/@daveebbelaar)

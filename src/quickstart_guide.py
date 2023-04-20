@@ -17,7 +17,7 @@ load_dotenv(find_dotenv())
 # --------------------------------------------------------------
 
 llm = OpenAI(model_name="text-davinci-003")
-prompt = "One sentence poem about python"
+prompt = "Write a poem about python and ai"
 print(llm(prompt))
 
 
@@ -50,7 +50,7 @@ chain.run("")
 # --------------------------------------------------------------
 
 # First, let's load the language model we're going to use to control the agent.
-llm = OpenAI(temperature=0)
+llm = OpenAI()
 
 # Next, let's load some tools to use. Note that the `llm-math` tool uses an LLM, so we need to pass that in.
 tools = load_tools(["wikipedia", "serpapi", "llm-math"], llm=llm)
@@ -66,7 +66,7 @@ agent.run("In what year was python released and who is the original creator?")
 
 
 # --------------------------------------------------------------
-# Memory
+# Memory: Add State to Chains and Agents
 # --------------------------------------------------------------
 
 llm = OpenAI(temperature=0.7)
@@ -79,13 +79,3 @@ output = conversation.predict(
     input="I'm doing well! Just having a conversation with an AI."
 )
 print(output)
-
-params = {
-    "engine": "youtube",
-    "gl": "nl",
-}
-search = SerpAPIWrapper(params=params)
-
-result = search.run("auto-gpt tutorial")
-
-print(result)
