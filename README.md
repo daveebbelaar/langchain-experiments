@@ -77,7 +77,7 @@ load_dotenv(find_dotenv())
 
 By using the right naming convention for the environment variable, you don't have to manually store the key in a separate variable and pass it to the function. The library or package that requires the API key will automatically recognize the `OPENAI_API_KEY` environment variable and use its value.
 
-#### 5. When needed, you can access the `OPENAI_API_KEY` as an environment variable:
+When needed, you can access the `OPENAI_API_KEY` as an environment variable:
 ```python
 import os
 api_key = os.environ['OPENAI_API_KEY']
