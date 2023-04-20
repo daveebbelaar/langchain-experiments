@@ -3,9 +3,7 @@ langchain
 openai
 google-api-python-client # Google API
 google-search-results # SerpAPI
-wikipedia
 youtube-transcript-api
-pytube
 chromadb
 tiktoken
 faiss-cpu
