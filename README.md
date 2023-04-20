@@ -33,15 +33,15 @@ The OpenAI API is powered by a diverse set of [models](https://platform.openai.c
 
 ## Installation
 
-### 1. Clone the repository:
+#### 1. Clone the repository:
 
 ```bash
 git clone https://github.com/your-username/langchain-experiments.git
 ```
 
-### 2. Create a Python environment with Python 3.6 or higher using `venv` or `conda`.
+#### 2. Create a Python environment
 
-Using `venv`:
+Python 3.6 or higher using `venv` or `conda`. Using `venv`:
 
 ``` bash
 cd langchain-experiments
@@ -56,12 +56,12 @@ conda create -n langchain-env python=3.8
 conda activate langchain-env
 ```
 
-### 3. Install the required dependencies:
+#### 3. Install the required dependencies:
 ``` bash
 pip install -r requirements.txt
 ```
 
-### 4. Set up the keys in a .env file:
+#### 4. Set up the keys in a .env file:
 
 First, create a `.env` file in the root directory of the project. Inside the file, add your OpenAI API key:
 
