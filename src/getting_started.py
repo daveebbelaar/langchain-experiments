@@ -13,7 +13,7 @@ from langchain.utilities import SerpAPIWrapper
 load_dotenv(find_dotenv())
 
 # --------------------------------------------------------------
-# Models
+# LLMs: Get predictions from a language model
 # --------------------------------------------------------------
 
 llm = OpenAI(model_name="text-davinci-003")
@@ -22,7 +22,7 @@ print(llm(prompt))
 
 
 # --------------------------------------------------------------
-# Prompts
+# Prompt Templates: Manage prompts for LLMs
 # --------------------------------------------------------------
 
 prompt = PromptTemplate(
@@ -30,31 +30,30 @@ prompt = PromptTemplate(
     template="What is a good name for a company that makes {product}?",
 )
 
-prompt.format(product="toothbrushes")
+prompt.format(product="Smart Apps using Large Language Models (LLMs)")
 
 # --------------------------------------------------------------
-# Chains
+# Chains: Combine LLMs and prompts in multi-step workflows
 # --------------------------------------------------------------
 
-llm = OpenAI(temperature=0.9)
+llm = OpenAI(model_name="text-davinci-003")
 prompt = PromptTemplate(
     input_variables=["product"],
     template="What is a good name for a company that makes {product}?",
 )
 
 chain = LLMChain(llm=llm, prompt=prompt)
-
-chain.run("AI Aquisition Agents")
+chain.run("")
 
 # --------------------------------------------------------------
-# Agents
+# Agents: Dynamically Call Chains Based on User Input
 # --------------------------------------------------------------
 
 # First, let's load the language model we're going to use to control the agent.
 llm = OpenAI(temperature=0)
 
 # Next, let's load some tools to use. Note that the `llm-math` tool uses an LLM, so we need to pass that in.
-tools = load_tools(["wikipedia", "google-search", "llm-math"], llm=llm)
+tools = load_tools(["wikipedia", "serpapi", "llm-math"], llm=llm)
 get_all_tool_names()
 
 # Finally, let's initialize an agent with the tools, the language model, and the type of agent we want to use.
