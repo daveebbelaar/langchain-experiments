@@ -53,7 +53,7 @@ source env/bin/activate
 Using `conda`:
 ``` bash
 cd langchain-experiments
-conda create --name langchain-env python=3.6
+conda create -n langchain-env python=3.8
 conda activate langchain-env
 ```
 
