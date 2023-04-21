@@ -29,7 +29,7 @@ def create_db_from_youtube_video_url(video_url):
 
 def get_response_from_query(db, query, k=4):
     """
-    text-davinci-003 can handle up to 4097 tokens. Setting the chunksize to 1000 and k to 4 maximizes
+    gpt-3.5-turbo can handle up to 4097 tokens. Setting the chunksize to 1000 and k to 4 maximizes
     the number of tokens to analyze.
     """
 
@@ -71,6 +71,6 @@ def get_response_from_query(db, query, k=4):
 video_url = "https://www.youtube.com/watch?v=L_Guz73e6fw"
 db = create_db_from_youtube_video_url(video_url)
 
-query = "What are they saying about AGI?"
+query = "What are they saying about Microsoft?"
 response, docs = get_response_from_query(db, query)
-print(textwrap.fill(response, width=85))
+print(textwrap.fill(response, width=50))
