@@ -7,3 +7,4 @@ youtube-transcript-api
 chromadb
 tiktoken
 faiss-cpu
+wikipedia
