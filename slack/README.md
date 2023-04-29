@@ -76,7 +76,7 @@ SLACK_BOT_USER_ID = "your-bot-id"
 
 #### 4. Start your local Flask server
 
-- Run the Python script in the terminal (macOS/Linux) or Command Prompt (Windows): `python slack_bot.py` The server should start, and you'll see output indicating that it's running on [http://127.0.0.1:5000/](http://127.0.0.1:5000/).
+- Run the Python script in the terminal (macOS/Linux) or Command Prompt (Windows): `python app.py` The server should start, and you'll see output indicating that it's running on [http://127.0.0.1:5000/](http://127.0.0.1:5000/).
 
 ## Part 3 — Server Setup (Local)
 
@@ -99,6 +99,10 @@ Remember that if you installed ngrok via Homebrew, you can run `ngrok http 5000`
 
 - In the left sidebar menu, click on "Install App".
 - Click "Reinstall App to Workspace" and authorize the app.
+
+#### 4. Add your bot to a Slack channel
+
+- Type `/invite @bot-name` in the channel.
 
 ## Part 4 — Add Custom Functions
 

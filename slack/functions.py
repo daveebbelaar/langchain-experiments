@@ -17,7 +17,7 @@ def draft_email(user_input, name="Dave"):
     
     You are a helpful assistant that drafts an email reply based on an a new email.
     
-    You goal is help the user quickly create a perfect email reply by.
+    Your goal is to help the user quickly create a perfect email reply.
     
     Keep your reply short and to the point and mimic the style of the email so you reply in a similar manner to match the tone.
     
