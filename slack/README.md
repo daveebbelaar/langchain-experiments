@@ -1,38 +1,37 @@
 # Slack AI Assistant with Pyton & LangChain
 
-> Here's a step-by-step guide to creating a Slack bot, installing it in a workspace, setting up a Python code with Flask, and using ngrok.
+Here's a step-by-step guide to creating a Slack bot, installing it in a workspace, setting up a Python code with Flask, and using ngrok.
 
+## Part 1 — Slack Setup
 
-#### Part 1 — Slack Setup
-
-> #### Step 1: Create a new Slack app
+### Step 1: Create a new Slack app
 
 - Go to [https://api.slack.com/apps](https://api.slack.com/apps) and sign in with your Slack account.
 - Click "Create New App" and provide an app name and select your workspace as the development workspace. Click "Create App".
 
-> #### Step 2: Set up your bot
+### Step 2: Set up your bot
 
 - Under the "Add features and functionality" section, click on "Bots".
 - Click "Add a Bot User" and fill in the display name and default username. Save your changes.
 
-> #### Step 3: Add permissions to your bot
+### Step 3: Add permissions to your bot
 
 - In the left sidebar menu, click on "OAuth & Permissions".
 - Scroll down to "Scopes" and add the required bot token scopes. For this example, you'll need at least `app_mentions:read`, `chat:write`, and `channels:history`.
 
-> #### Step 4: Install the bot to your workspace
+### Step 4: Install the bot to your workspace
 
 - In the left sidebar menu, click on "Install App".
 - Click "Install App to Workspace" and authorize the app.
 
-> #### Step 5: Retrieve the bot token
+### Step 5: Retrieve the bot token
 
 - After installation, you'll be redirected to the "OAuth & Permissions" page.
 - Copy the "Bot User OAuth Access Token" (it starts with `xoxb-`). You'll need it for your Python script.
 
 #### Part 2 — Python Setup
 
-> #### Step 1: Set up your Python environment
+### Step 1: Set up your Python environment
 
 - Install Python 3.6 or later (if you haven't already).
 - Install the required packages: `slack-sdk`, `slack-bolt`, and `Flask`. You can do this using pip:
@@ -59,102 +58,11 @@ conda activate myenv
 pip install slack-sdk slack-bolt Flask
 ```
 
-> #### Step 2: Create the Python script with Flask
+### Step 2: Create the Python script with Flask
 
-- Create a new Python file (e.g., `slack_bot.py`) and add the following code:
+- Create a new Python file (e.g., `slack_bot.py`) and insert the code from `app.py` in this repository.
 
-```python
-import os
-from slack_sdk import WebClient
-from slack_sdk.errors import SlackApiError
-from slack_bolt.adapter.flask import SlackRequestHandler
-from slack_bolt import App
-from dotenv import find_dotenv, load_dotenv
-from flask import Flask, request
-
-# Load environment variables from .env file
-load_dotenv(find_dotenv())
-
-# Set Slack API credentials
-SLACK_BOT_TOKEN = os.environ["SLACK_BOT_TOKEN"]
-SLACK_SIGNING_SECRET = os.environ["SLACK_SIGNING_SECRET"]
-SLACK_BOT_USER_ID = os.environ["SLACK_BOT_USER_ID"]
-
-# Initialize the Slack app
-app = App(token=SLACK_BOT_TOKEN)
-
-# Initialize the Flask app
-flask_app = Flask(__name__)
-handler = SlackRequestHandler(app)
-
-
-def get_bot_user_id():
-    """
-    Get the bot user ID using the Slack API.
-    Returns:
-        str: The bot user ID.
-    """
-    try:
-        # Initialize the Slack client with your bot token
-        slack_client = WebClient(token=os.environ["SLACK_BOT_TOKEN"])
-        response = slack_client.auth_test()
-        return response["user_id"]
-    except SlackApiError as e:
-        print(f"Error: {e}")
-
-
-def my_function(text):
-    """
-    Custom function to process the text and return a response.
-    In this example, the function converts the input text to uppercase.
-
-    Args:
-        text (str): The input text to process.
-
-    Returns:
-        str: The processed text.
-    """
-    response = text.upper()
-    return response
-
-
-@app.event("app_mention")
-def handle_mentions(body, say):
-    """
-    Event listener for mentions in Slack.
-    When the bot is mentioned, this function processes the text and sends a response.
-
-    Args:
-        body (dict): The event data received from Slack.
-        say (callable): A function for sending a response to the channel.
-    """
-    text = body["event"]["text"]
-
-    mention = f"<@{SLACK_BOT_USER_ID}>"
-    text = text.replace(mention, "").strip()
-
-    response = my_function(text)
-    say(response)
-
-
-@flask_app.route("/slack/events", methods=["POST"])
-def slack_events():
-    """
-    Route for handling Slack events.
-    This function passes the incoming HTTP request to the SlackRequestHandler for processing.
-
-    Returns:
-        Response: The result of handling the request.
-    """
-    return handler.handle(request)
-
-
-# Run the Flask app
-if __name__ == "__main__":
-    flask_app.run()
-```
-
-> #### Step 3: Set the environment variable in the .env file
+### Step 3: Set the environment variable in the .env file
 
 - Create a .env file in your project directory and add the following keys:
 
@@ -164,13 +72,13 @@ SLACK_SIGNING_SECRET = "your-secret"
 SLACK_BOT_USER_ID = "your-bot-id"
 ```
 
-> #### Step 4: Start your local Flask server
+### Step 4: Start your local Flask server
 
 - Run the Python script in the terminal (macOS/Linux) or Command Prompt (Windows): `python slack_bot.py` The server should start, and you'll see output indicating that it's running on [http://127.0.0.1:5000/](http://127.0.0.1:5000/).
 
-#### Part 3 — Server Setup (Local)
+## Part 3 — Server Setup (Local)
 
-> #### Step 1: Expose your local server using ngrok
+### Step 1: Expose your local server using ngrok
 
 - If you haven't installed ngrok, you can download it from [https://ngrok.com/download](https://ngrok.com/download) or, on macOS, install it via Homebrew by running: `brew install ngrok`
 - In a new terminal (macOS/Linux) or Command Prompt (Windows), start ngrok by running the following command: `ngrok http 5000`
@@ -178,21 +86,21 @@ SLACK_BOT_USER_ID = "your-bot-id"
 
 Remember that if you installed ngrok via Homebrew, you can run `ngrok http 5000` from any directory in the terminal. If you downloaded it from the website, navigate to the directory where ngrok is installed before running the command.
 
-> #### Step 2: Configure your Slack app with the ngrok URL
+### Step 2: Configure your Slack app with the ngrok URL
 
 - Go back to your Slack app settings at [https://api.slack.com/apps](https://api.slack.com/apps).
 - Click on "Event Subscriptions" in the left sidebar menu.
 - Enable events and enter your ngrok URL followed by `/slack/events` (e.g., [https://yoursubdomain.ngrok.io/slack/events](https://yoursubdomain.ngrok.io/slack/events)).
 - Scroll down to "Subscribe to bot events" and click "Add Bot User Event". Add the `app_mention` event and save your changes.
 
-> #### Step 3: Reinstall your Slack app to update the permissions
+### Step 3: Reinstall your Slack app to update the permissions
 
 - In the left sidebar menu, click on "Install App".
 - Click "Reinstall App to Workspace" and authorize the app.
 
-#### Part 4 — Add Custom Functions
+## Part 4 — Add Custom Functions
 
-> #### Step 1: Create a function to draft emails
+### Step 1: Create a function to draft emails
 
 - Create a new file called `functions.py` and insert the following code:
 
@@ -263,11 +171,11 @@ def handle_mentions(body, say):
     say(response)
 ```
 
-> #### Step 2: Come up with your own ideas
+### Step 2: Come up with your own ideas
 
 - What are you going to make with this?
 
-#### Troubleshooting
+## Troubleshooting
 
 > Port 5000 is in use by another program. Either identify and stop that program, or start the server with a different port.
 
@@ -301,7 +209,10 @@ If the port is no longer in use, the command should not return any output.
 
 Note that you may need to run the `lsof` and `kill` commands with `sudo` privileges if the program or process is owned by another user or requires elevated privileges.
 
-----
+## Datalumina
 
 This document is provided to you by Datalumina. We help data analysts, engineers, and scientists launch and scale a successful freelance business — $100k+ /year, fun projects, happy clients. If you want to learn more about what we do, you can visit our [website](https://www.datalumina.io/) and subscribe to our [newsletter](https://www.datalumina.io/newsletter). Feel free to share this document with your data friends and colleagues.
+
+## Tutorials
+For video tutorials on how to use the LangChain library and run experiments, visit the YouTube channel: [youtube.com/@daveebbelaar](youtube.com/@daveebbelaar)
 
