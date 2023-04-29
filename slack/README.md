@@ -97,6 +97,9 @@ Remember that if you installed ngrok via Homebrew, you can run `ngrok http 5000`
 - Enable events and enter your ngrok URL followed by `/slack/events` (e.g., [https://yoursubdomain.ngrok.io/slack/events](https://yoursubdomain.ngrok.io/slack/events)).
 - Scroll down to "Subscribe to bot events" and click "Add Bot User Event". Add the `app_mention` event and save your changes.
 
+>**Note**
+> Please note that every time you restart ngrok in the terminal, you have to update the URL in Slack — this is just for testing.
+
 #### 3. Reinstall your Slack app to update the permissions
 
 - In the left sidebar menu, click on "Install App".
