@@ -61,6 +61,7 @@ pip install slack-sdk slack-bolt Flask
 #### 2. Create the Python script with Flask
 
 - Create a new Python file (e.g., `app.py`) and insert the code from [`app.py`](https://github.com/daveebbelaar/langchain-experiments/blob/main/slack/app.py) in this repository.
+- If you want to use a free version, you can explore the others supported [LangChain's Model](https://python.langchain.com/en/latest/modules/models/llms/integrations.html).
 
 #### 3. Set the environment variable in the .env file
 
