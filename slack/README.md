@@ -4,34 +4,34 @@ Here's a step-by-step guide to creating a Slack bot, installing it in a workspac
 
 ## Part 1 — Slack Setup
 
-### 1. Create a new Slack app
+#### 1. Create a new Slack app
 
 - Go to [https://api.slack.com/apps](https://api.slack.com/apps) and sign in with your Slack account.
 - Click "Create New App" and provide an app name and select your workspace as the development workspace. Click "Create App".
 
-### 2. Set up your bot
+#### 2. Set up your bot
 
 - Under the "Add features and functionality" section, click on "Bots".
 - Click "Add a Bot User" and fill in the display name and default username. Save your changes.
 
-### 3. Add permissions to your bot
+#### 3. Add permissions to your bot
 
 - In the left sidebar menu, click on "OAuth & Permissions".
 - Scroll down to "Scopes" and add the required bot token scopes. For this example, you'll need at least `app_mentions:read`, `chat:write`, and `channels:history`.
 
-### 4. Install the bot to your workspace
+#### 4. Install the bot to your workspace
 
 - In the left sidebar menu, click on "Install App".
 - Click "Install App to Workspace" and authorize the app.
 
-### 5. Retrieve the bot token
+#### 5. Retrieve the bot token
 
 - After installation, you'll be redirected to the "OAuth & Permissions" page.
 - Copy the "Bot User OAuth Access Token" (it starts with `xoxb-`). You'll need it for your Python script.
 
 ## Part 2 — Python Setup
 
-### 1. Set up your Python environment
+#### 1. Set up your Python environment
 
 - Install Python 3.6 or later (if you haven't already).
 - Install the required packages: `slack-sdk`, `slack-bolt`, and `Flask`. You can do this using pip:
@@ -58,11 +58,11 @@ conda activate myenv
 pip install slack-sdk slack-bolt Flask
 ```
 
-### 2. Create the Python script with Flask
+#### 2. Create the Python script with Flask
 
 - Create a new Python file (e.g., `app.py`) and insert the code from [`app.py`](https://github.com/daveebbelaar/langchain-experiments/blob/main/slack/app.py) in this repository.
 
-### 3. Set the environment variable in the .env file
+#### 3. Set the environment variable in the .env file
 
 - Create a .env file in your project directory and add the following keys:
 
@@ -72,13 +72,13 @@ SLACK_SIGNING_SECRET = "your-secret"
 SLACK_BOT_USER_ID = "your-bot-id"
 ```
 
-### 4. Start your local Flask server
+#### 4. Start your local Flask server
 
 - Run the Python script in the terminal (macOS/Linux) or Command Prompt (Windows): `python slack_bot.py` The server should start, and you'll see output indicating that it's running on [http://127.0.0.1:5000/](http://127.0.0.1:5000/).
 
 ## Part 3 — Server Setup (Local)
 
-### 1. Expose your local server using ngrok
+#### 1. Expose your local server using ngrok
 
 - If you haven't installed ngrok, you can download it from [https://ngrok.com/download](https://ngrok.com/download) or, on macOS, install it via Homebrew by running: `brew install ngrok`
 - In a new terminal (macOS/Linux) or Command Prompt (Windows), start ngrok by running the following command: `ngrok http 5000`
@@ -86,27 +86,27 @@ SLACK_BOT_USER_ID = "your-bot-id"
 
 Remember that if you installed ngrok via Homebrew, you can run `ngrok http 5000` from any directory in the terminal. If you downloaded it from the website, navigate to the directory where ngrok is installed before running the command.
 
-### 2. Configure your Slack app with the ngrok URL
+#### 2. Configure your Slack app with the ngrok URL
 
 - Go back to your Slack app settings at [https://api.slack.com/apps](https://api.slack.com/apps).
 - Click on "Event Subscriptions" in the left sidebar menu.
 - Enable events and enter your ngrok URL followed by `/slack/events` (e.g., [https://yoursubdomain.ngrok.io/slack/events](https://yoursubdomain.ngrok.io/slack/events)).
 - Scroll down to "Subscribe to bot events" and click "Add Bot User Event". Add the `app_mention` event and save your changes.
 
-### 3. Reinstall your Slack app to update the permissions
+#### 3. Reinstall your Slack app to update the permissions
 
 - In the left sidebar menu, click on "Install App".
 - Click "Reinstall App to Workspace" and authorize the app.
 
 ## Part 4 — Add Custom Functions
 
-### 1. Create a function to draft emails
+#### 1. Create a function to draft emails
 
 - Create a new file called `functions.py` and insert the code from [`functions.py`](https://github.com/daveebbelaar/langchain-experiments/blob/main/slack/functions.py)
 - Import the function in your `app.py` file with `from functions import draft_email`.
 - And update the `handle_mentions` function.
 
-### 2. Come up with your own ideas
+#### 2. Come up with your own ideas
 
 - What are you going to make with this?
 
