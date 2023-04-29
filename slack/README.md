@@ -6,6 +6,7 @@ Here's a step-by-step guide to creating a Slack bot, installing it in a workspac
 
 #### 1. Create a new Slack app
 
+- Choose an existing Slack workspace or create a new one.
 - Go to [https://api.slack.com/apps](https://api.slack.com/apps) and sign in with your Slack account.
 - Click "Create New App" and provide an app name and select your workspace as the development workspace. Click "Create App".
 
