@@ -102,7 +102,7 @@ Remember that if you installed ngrok via Homebrew, you can run `ngrok http 5000`
 
 ### 1. Create a function to draft emails
 
-- Create a new file called `functions.py` and insert the code from [functions.py](https://github.com/daveebbelaar/langchain-experiments/blob/main/slack/functions.py)
+- Create a new file called `functions.py` and insert the code from [`functions.py`](https://github.com/daveebbelaar/langchain-experiments/blob/main/slack/functions.py)
 - Import the function in your `app.py` file with `from functions import draft_email`.
 - And update the `handle_mentions` function.
 
