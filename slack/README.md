@@ -60,7 +60,7 @@ pip install slack-sdk slack-bolt Flask
 
 ### 2. Create the Python script with Flask
 
-- Create a new Python file (e.g., `slack_bot.py`) and insert the code from `app.py` in this repository.
+- Create a new Python file (e.g., `app.py`) and insert the code from [`app.py`](https://github.com/daveebbelaar/langchain-experiments/blob/main/slack/app.py) in this repository.
 
 ### 3. Set the environment variable in the .env file
 
@@ -102,7 +102,7 @@ Remember that if you installed ngrok via Homebrew, you can run `ngrok http 5000`
 
 ### 1. Create a function to draft emails
 
-- Create a new file called `functions.py` and insert the following code your customer custom function.
+- Create a new file called `functions.py` and insert the code from [functions.py](https://github.com/daveebbelaar/langchain-experiments/blob/main/slack/functions.py)
 - Import the function in your `app.py` file with `from functions import draft_email`.
 - And update the `handle_mentions` function.
 
