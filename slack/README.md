@@ -112,7 +112,7 @@ Remember that if you installed ngrok via Homebrew, you can run `ngrok http 5000`
 
 ## Troubleshooting
 
-> **Note**
+> **Warning**
 > Port 5000 is in use by another program. Either identify and stop that program, or start the server with a different port.
 
 To close a port on a Mac, you need to identify the program or process that is using the port and then stop that program or process. Here are the steps you can follow:
