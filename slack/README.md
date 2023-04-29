@@ -1,4 +1,4 @@
-# Slack AI Assistant with Pyton & LangChain
+# Slack AI Assistant with Python & LangChain
 
 Here's a step-by-step guide to creating a Slack bot, installing it in a workspace, setting up a Python code with Flask, and using ngrok.
 

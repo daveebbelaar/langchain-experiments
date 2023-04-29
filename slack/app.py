@@ -69,7 +69,7 @@ def handle_mentions(body, say):
     text = text.replace(mention, "").strip()
 
     say("Sure, I'll get right on that!")
-    response = draft_email(text)
+    response = my_function(text)
     say(response)
 
 
