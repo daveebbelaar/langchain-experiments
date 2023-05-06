@@ -64,4 +64,3 @@ jobs:
           app-name: "slack-gpt-app"
           slot-name: "production"
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_b1b32ed0cc834a8c871b16a91bc7b8cd }}
-          app_location: "slack"
