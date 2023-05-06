@@ -7,7 +7,7 @@ name: Build and deploy Python app to Azure Web App - slack-gpt-app
 on:
   push:
     branches:
-      - main
+      - deployment
   workflow_dispatch:
 
 jobs:
@@ -51,6 +51,11 @@ jobs:
         with:
           name: python-app
           path: slack
+
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: "Deploy to Azure Web App"
         uses: azure/webapps-deploy@v2
