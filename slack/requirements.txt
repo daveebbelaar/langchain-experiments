@@ -3,4 +3,4 @@ langchain
 openai
 slack-sdk 
 slack-bolt 
-flask
+Flask
