@@ -20,7 +20,7 @@ SLACK_SIGNING_SECRET = os.environ["SLACK_SIGNING_SECRET"]
 SLACK_BOT_USER_ID = os.environ["SLACK_BOT_USER_ID"]
 
 # Initialize the Slack app
-app = App(token=SLACK_BOT_TOKEN, signing_secret=SLACK_SIGNING_SECRET)
+app = App(token=SLACK_BOT_TOKEN)
 
 # Initialize the Flask app
 # Flask is a web application framework written in Python
@@ -88,9 +88,9 @@ def slack_events():
     Returns:
         Response: The result of handling the request.
     """
-    # Verify the request signature
-    if not app.verify_signature(request):
-        abort(401)  # Unauthorized request
+    # # Verify the request signature
+    # if not app.verify_signature(request):
+    #     abort(401)  # Unauthorized request
 
     return handler.handle(request)
 
