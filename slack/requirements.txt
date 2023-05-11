@@ -4,4 +4,3 @@ openai
 slack-sdk 
 slack-bolt 
 Flask
-gunicorn
