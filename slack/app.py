@@ -6,6 +6,10 @@ from slack_bolt import App
 from dotenv import find_dotenv, load_dotenv
 from flask import Flask, request
 from functions import draft_email
+import logging
+
+logging.basicConfig(level=logging.INFO)
+
 
 # Load environment variables from .env file
 load_dotenv(find_dotenv())
@@ -89,4 +93,5 @@ def slack_events():
 
 # Run the Flask app
 if __name__ == "__main__":
+    logging.info("Flask app started")
     flask_app.run(host="0.0.0.0", port=8000)
