@@ -4,7 +4,7 @@ from slack_sdk.errors import SlackApiError
 from slack_bolt.adapter.flask import SlackRequestHandler
 from slack_bolt import App
 from dotenv import find_dotenv, load_dotenv
-from flask import Flask, request
+from flask import Flask, request, abort
 from functions import draft_email
 import logging
 
@@ -20,7 +20,7 @@ SLACK_SIGNING_SECRET = os.environ["SLACK_SIGNING_SECRET"]
 SLACK_BOT_USER_ID = os.environ["SLACK_BOT_USER_ID"]
 
 # Initialize the Slack app
-app = App(token=SLACK_BOT_TOKEN)
+app = App(token=SLACK_BOT_TOKEN, signing_secret=SLACK_SIGNING_SECRET)
 
 # Initialize the Flask app
 # Flask is a web application framework written in Python
@@ -88,6 +88,10 @@ def slack_events():
     Returns:
         Response: The result of handling the request.
     """
+    # Verify the request signature
+    if not app.verify_signature(request):
+        abort(401)  # Unauthorized request
+
     return handler.handle(request)
 
 
