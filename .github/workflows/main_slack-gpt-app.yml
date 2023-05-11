@@ -49,7 +49,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: python-app
-          path: slack
+          path: .
 
       - name: Log in to Azure CLI using service principal
         uses: azure/login@v1
