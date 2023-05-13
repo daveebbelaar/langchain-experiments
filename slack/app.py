@@ -108,12 +108,12 @@ def handle_mentions(body, say):
 
     mention = f"<@{SLACK_BOT_USER_ID}>"
     text = text.replace(mention, "").strip()
-    logging.info(f"Received text: {text}")
+    logging.info("Received text: " + text.replace("\n", " "))
 
     say("Sure, I'll get right on that!")
     # response = my_function(text)
     response = draft_email(text)
-    logging.info(f"Generated response: {response}")
+    logging.info("Generated response: " + response.replace("\n", " "))
     say(response)
 
 
