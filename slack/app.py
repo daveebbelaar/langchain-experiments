@@ -11,8 +11,10 @@ import logging
 from functools import wraps
 import time
 
-logging.basicConfig(level=logging.INFO)
-
+# Configure the logging level and format
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s"
+)
 
 # Load environment variables from .env file
 load_dotenv(find_dotenv())
@@ -103,10 +105,12 @@ def handle_mentions(body, say):
 
     mention = f"<@{SLACK_BOT_USER_ID}>"
     text = text.replace(mention, "").strip()
+    logging.info(f"Received text: {text}")
 
     say("Sure, I'll get right on that!")
     # response = my_function(text)
     response = draft_email(text)
+    logging.info(f"Generated response: {response}")
     say(response)
 
 

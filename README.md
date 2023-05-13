@@ -1,89 +1,142 @@
-# LangChain Experiments
+# Deploy Your Slack AI Bot to Azure
 
-This repository focuses on experimenting with the LangChain library for building powerful applications with large language models (LLMs). By leveraging state-of-the-art language models like OpenAI's GPT-3.5 Turbo (and soon GPT-4), this project showcases how to create a searchable database from a YouTube video transcript, perform similarity search queries using the FAISS library, and respond to user questions with relevant and precise information.
+## 1. Introduction
 
-LangChain is a comprehensive framework designed for developing applications powered by language models. It goes beyond merely calling an LLM via an API, as the most advanced and differentiated applications are also data-aware and agentic, enabling language models to connect with other data sources and interact with their environment. The LangChain framework is specifically built to address these principles.
+Welcome to this tutorial on deploying your Python-based Slack bot to an Azure Web App! In the previous video, we built a Slack bot locally and tested it using ngrok. In this tutorial, we will take it a step further and deploy the bot to the cloud using Azure, allowing it to be accessible from anywhere. Although we are using Azure in this tutorial, you can achieve similar results using other cloud platforms, such as AWS or Google Cloud Platform.
 
-## LangChain
+By the end of this tutorial, you will learn how to:
 
-The Python-specific portion of LangChain's documentation covers several main modules, each providing examples, how-to guides, reference docs, and conceptual guides. These modules include:
+- Set up an Azure account and deploy a web app using the Deployment Center.
+- Update the GitHub Actions workflow file to enable automated deployments.
+- Update the Python file to allow running on Azure and implement Slack verification.
+- Update the Slack App Event Subscription with the new Azure URL.
 
-1. Models: Various model types and model integrations supported by LangChain.
-3. Prompts: Prompt management, optimization, and serialization.
-3. Memory: State persistence between chain or agent calls, including a standard memory interface, memory implementations, and examples of chains and agents utilizing memory.
-4. Indexes: Combining LLMs with custom text data to enhance their capabilities.
-5. Chains: Sequences of calls, either to an LLM or a different utility, with a standard interface, integrations, and end-to-end chain examples.
-6. Agents: LLMs that make decisions about actions, observe the results, and repeat the process until completion, with a standard interface, agent selection, and end-to-end agent examples.
+Understanding how to deploy apps is incredibly valuable as it enables you to deliver end-to-end solutions for your projects. By understanding the entire process, from development to deployment, you can bypass the need for multiple specialized teams and make a more significant impact on your projects. End-to-end solutions mean that you are capable of taking an idea from conception to completion, ensuring seamless integration and smooth operation. This skill allows you to stand out by bridging the gap between data science and software engineering, and I find that it is often overlooked in online tutorials.
 
-## Use Cases
-With LangChain, developers can create various applications, such as customer support chatbots, automated content generators, data analysis tools, and intelligent search engines. These applications can help businesses streamline their workflows, reduce manual labor, and improve customer experiences.
+## 2. Azure Setup
 
-## Service
-By selling LangChain-based applications as a service to businesses, you can provide tailored solutions to meet their specific needs. For instance, companies can benefit from customizable chatbots that handle customer inquiries, personalized content creation tools for marketing, or internal data analysis systems that harness the power of LLMs to extract valuable insights. The possibilities are vast, and LangChain's flexible framework makes it the ideal choice for developing and deploying advanced language model applications in diverse industries.
+In this section, we will guide you through setting up an Azure account and deploying a web app using the Deployment Center. Azure provides a comprehensive platform for deploying and managing your applications in the cloud.
 
-## Requirements
+Follow these steps to set up your Azure account and deploy your Slack bot:
 
-- [Python 3.6 or higher](https://www.python.org/downloads/)
-- [LangChain library](https://python.langchain.com/en/latest/index.html)
-- [OpenAI API key](https://platform.openai.com/)
-- [SerpAPI API Key](https://serpapi.com/)
+1. **Sign up for an Azure account**: If you don't already have an account, sign up for a free Azure account at https://azure.microsoft.com. New users are eligible for a $200 credit, which you can use to explore and experiment with Azure services.
 
-## OpenAI API Models
-The OpenAI API is powered by a diverse set of [models](https://platform.openai.com/docs/models) with different capabilities and price points. You can also make limited customizations to our original base models for your specific use case with fine-tuning.
+2. **Create a Resource Grou**p: A resource group helps you organize and manage resources based on their lifecycle and their relationship to each other. In the Azure Portal, create a new resource group called `LangChain-Experiments`.
 
-## Installation
+3. **Create an App Service**: An App Service is a fully managed platform for building, deploying, and scaling your web apps. In the Azure Portal, create a new App Service and associate it with the `LangChain-Experiments` resource group. Select an appropriate App Service Plan based on your needs.
 
-#### 1. Clone the repository
+4. **Deploy via GitHub repo**: In the Azure Deployment Center, connect your GitHub repository to your App Service. This will enable continuous integration and deployment, so your app will be automatically updated whenever you push changes to the specified branch. Make sure to select the correct branch.
+
+Once you've completed these steps, your Azure account will be set up and ready for deploying your Slack bot. In the next sections, we will discuss how to update the workflow file, the Python file, and the Slack App Event Subscription to complete the deployment process.
+
+## 3. Updating the Workflow File
+
+In this section, we'll go over updating the GitHub Actions workflow file to enable automated deployments to your Azure App Service. We'll configure the workflow to log in to Azure CLI using a service principal and update the Azure credentials in GitHub Actions secrets.
+
+Follow these steps to update the workflow file:
+
+1. **Log in to Azure CLI using service principal**: In your GitHub Actions workflow file, add the following code snippet to enable logging in to the Azure CLI using a service principal:
+
+``` yml
+- name: Log in to Azure CLI using service principal
+  uses: azure/login@v1
+  with:
+    creds: ${{ secrets.AZURE_CREDENTIALS }}
+```
+
+2. Create the service principal: To create a service principal, run the following command in the Azure Cloud Shell, replacing `<YOUR-SUBSCRIPTION-ID>` with your actual subscription ID (Home > Subscriptions):
 
 ```bash
-git clone https://github.com/your-username/langchain-experiments.git
+az ad sp create-for-rbac --name "mySlackBotApp" --role contributor --scopes /subscriptions/<YOUR-SUBSCRIPTION-ID> --sdk-auth
 ```
 
-#### 2. Create a Python environment
+This command will output a JSON object containing the necessary credentials, such as `clientId`, `clientSecret`, `subscriptionId`, and `tenantId`.
 
-Python 3.6 or higher using `venv` or `conda`. Using `venv`:
+3. **Update Azure credentials in GitHub Actions secrets**: In your GitHub repository, navigate to the "Settings" tab and then click on "Secrets and variables > Actions" in the left sidebar. Create a new repository secret named `AZURE_CREDENTIALS` and paste the JSON object you obtained in the previous step as its value.
 
-``` bash
-cd langchain-experiments
-python3 -m venv env
-source env/bin/activate
-```
+With these updates in place, your GitHub Actions workflow is now configured to automatically deploy your Slack bot to Azure whenever you push changes to the specified branch. In the next sections, we will discuss updating the Python file and the Slack App Event Subscription to complete the deployment process.
 
-Using `conda`:
-``` bash
-cd langchain-experiments
-conda create -n langchain-env python=3.8
-conda activate langchain-env
-```
+## 4. Updating the Python File
 
-#### 3. Install the required dependencies
-``` bash
-pip install -r requirements.txt
-```
+In this section, we will update the Python file to allow running on Azure and implement Slack verification.
 
-#### 4. Set up the keys in a .env file
+Follow these steps to update the Python file:
 
-First, create a `.env` file in the root directory of the project. Inside the file, add your OpenAI API key:
+1. **Update the Flask app to run on Azure**: Modify the flask_app.run() line in your Python file to ensure that the Flask app listens to all incoming connections on the specified port. This is necessary for running the app on Azure. Update the line as follows:
 
-```makefile
-OPENAI_API_KEY=your_api_key_here
-```
-
-Save the file and close it. In your Python script or Jupyter notebook, load the `.env` file using the following code:
 ```python
-from dotenv import load_dotenv, find_dotenv
-load_dotenv(find_dotenv())
+flask_app.run(host="0.0.0.0", port=8000)
 ```
 
-By using the right naming convention for the environment variable, you don't have to manually store the key in a separate variable and pass it to the function. The library or package that requires the API key will automatically recognize the `OPENAI_API_KEY` environment variable and use its value.
+2. **Implement Slack verification**: To enhance the security of your Slack bot, you need to verify incoming requests from Slack. Add the following `require_slack_verification()` and `verify_slack_request()` functions to your Python file:
 
-When needed, you can access the `OPENAI_API_KEY` as an environment variable:
 ```python
-import os
-api_key = os.environ['OPENAI_API_KEY']
+
+signature_verifier = SignatureVerifier(SLACK_SIGNING_SECRET)
+
+def require_slack_verification(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if not verify_slack_request():
+            abort(403)
+        return f(*args, **kwargs)
+
+    return decorated_function
+
+
+def verify_slack_request():
+    # Get the request headers
+    timestamp = request.headers.get("X-Slack-Request-Timestamp", "")
+    signature = request.headers.get("X-Slack-Signature", "")
+
+    # Check if the timestamp is within five minutes of the current time
+    current_timestamp = int(time.time())
+    if abs(current_timestamp - int(timestamp)) > 60 * 5:
+        return False
+
+    # Verify the request signature
+    return signature_verifier.is_valid(
+        body=request.get_data().decode("utf-8"),
+        timestamp=timestamp,
+        signature=signature,
+    )
 ```
 
-Now your Python environment is set up, and you can proceed with running the experiments.
+3. Make sure to call this function before processing any requests from Slack to ensure that they are legitimate:
+
+```python
+@flask_app.route("/slack/events", methods=["POST"])
+@require_slack_verification
+def slack_events():
+    return handler.handle(request)
+
+```
+
+4. Commit and push the changes to GitHub to trigger the deployment action. Reference the Azure Log Stream for debugging.
+
+After making these changes, your Python file will be ready to run on Azure, and your Slack bot will have improved security through request verification. In the next section, we will discuss updating the Slack App Event Subscription with the new Azure URL.
+
+
+## 5. Updating the Slack App Event Subscription
+
+Now that your Slack bot is deployed on Azure, you need to update the Slack App Event Subscription with the new URL. This will ensure that your bot receives events from Slack at the correct endpoint.
+
+Follow these steps to update the Slack App Event Subscription:
+
+1. **Navigate to the Slack App Management page**: Go to https://api.slack.com/apps and sign in with your Slack account. Select the app you created for your Slack bot.
+
+2. **Access the Event Subscriptions settings**: In the left sidebar of your app's management page, click on "Event Subscriptions" to access the settings for this feature.
+
+3. **Enable and update the Request URL**: If you haven't already enabled event subscriptions, toggle the switch to enable it. Update the "Request URL" field with the new Azure URL of your deployed app. The URL should be in the format `https://app-name.azurewebsites.net/slack/events`. Replace `app-name` with the name of your App Service (e.g., slack-gpt-app).
+
+4. **Verify the new Request URL**: After entering the new URL, Slack will send a verification request to the provided endpoint. Make sure that your app verifies the request successfully. If there are any issues, double-check your Azure deployment, the Python code for Slack request verification, and the provided URL.
+
+5. **Save the changes**: Once the new Request URL is verified, click the "Save Changes" button at the bottom of the Event Subscriptions settings page.
+
+With these updates, your Slack App Event Subscription will now send events to your bot deployed on Azure. Your Python-based Slack bot is now fully deployed to the cloud and accessible from anywhere, enabling seamless integration with Slack and improving the overall functionality of your application.
+
+
+
 
 ## Datalumina
 
