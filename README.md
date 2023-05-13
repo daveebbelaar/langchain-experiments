@@ -29,6 +29,31 @@ Follow these steps to set up your Azure account and deploy your Slack bot:
 
 Once you've completed these steps, your Azure account will be set up and ready for deploying your Slack bot. In the next sections, we will discuss how to update the workflow file, the Python file, and the Slack App Event Subscription to complete the deployment process.
 
+#### 2.1 Create a startup.txt file
+
+Create a `startup.txt` file in the root of your project with the following content. This file will be used to configure Gunicorn as the application server for your Flask app when deployed to Azure.
+
+```bash
+gunicorn --bind=0.0.0.0 --timeout 600 --chdir slack app:flask_app
+```
+
+#### 2.2 Update the Startup Command in Azure
+
+In the Azure portal, navigate to your App Service, and then go to Configuration > General Settings. Under the "Startup command" field, enter the following command and click "Save" to apply the changes.
+```
+startup.txt
+```
+
+#### 2.3 Update the Web App Configuration with Keys and Secrets
+
+In the Azure portal, navigate to your App Service, and then go to Configuration > Application settings. Add the following keys and their respective values. Make sure to replace the placeholder values with your actual keys and secrets. Click "Save" to apply the changes.
+
+- `OPENAI_API_KEY`: Your OpenAI API key
+- `SLACK_BOT_TOKEN`: Your Slack bot token (starts with "xoxb-")
+- `SLACK_BOT_USER_ID`: Your Slack bot user ID
+- `SLACK_SIGNING_SECRET`: Your Slack signing secret
+
+
 ## 3. Updating the Workflow File
 
 In this section, we'll go over updating the GitHub Actions workflow file to enable automated deployments to your Azure App Service. We'll configure the workflow to log in to Azure CLI using a service principal and update the Azure credentials in GitHub Actions secrets.
@@ -44,7 +69,7 @@ Follow these steps to update the workflow file:
     creds: ${{ secrets.AZURE_CREDENTIALS }}
 ```
 
-2. Create the service principal: To create a service principal, run the following command in the Azure Cloud Shell, replacing `<YOUR-SUBSCRIPTION-ID>` with your actual subscription ID (Home > Subscriptions):
+2. **Create the service principal**: To create a service principal, run the following command in the Azure Cloud Shell, replacing `<YOUR-SUBSCRIPTION-ID>` with your actual subscription ID (Home > Subscriptions):
 
 ```bash
 az ad sp create-for-rbac --name "mySlackBotApp" --role contributor --scopes /subscriptions/<YOUR-SUBSCRIPTION-ID> --sdk-auth
@@ -102,7 +127,7 @@ def verify_slack_request():
     )
 ```
 
-3. Make sure to call this function before processing any requests from Slack to ensure that they are legitimate:
+3. **Add the decorators**: Make sure to call this function before processing any requests from Slack to ensure that they are legitimate:
 
 ```python
 @flask_app.route("/slack/events", methods=["POST"])
@@ -112,7 +137,7 @@ def slack_events():
 
 ```
 
-4. Commit and push the changes to GitHub to trigger the deployment action. Reference the Azure Log Stream for debugging.
+4. **Deploy**: Commit and push the changes to GitHub to trigger the deployment action. Reference the Azure Log Stream for debugging.
 
 After making these changes, your Python file will be ready to run on Azure, and your Slack bot will have improved security through request verification. In the next section, we will discuss updating the Slack App Event Subscription with the new Azure URL.
 
