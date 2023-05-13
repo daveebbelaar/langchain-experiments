@@ -29,7 +29,7 @@ Follow these steps to set up your Azure account and deploy your Slack bot:
 
 Once you've completed these steps, your Azure account will be set up and ready for deploying your Slack bot. In the next sections, we will discuss how to update the workflow file, the Python file, and the Slack App Event Subscription to complete the deployment process.
 
-#### 2.1 Create a startup.txt file
+### 2.1 Create a startup.txt file
 
 Create a `startup.txt` file in the root of your project with the following content. This file will be used to configure Gunicorn as the application server for your Flask app when deployed to Azure.
 
@@ -37,14 +37,14 @@ Create a `startup.txt` file in the root of your project with the following conte
 gunicorn --bind=0.0.0.0 --timeout 600 --chdir slack app:flask_app
 ```
 
-#### 2.2 Update the Startup Command in Azure
+### 2.2 Update the Startup Command in Azure
 
 In the Azure portal, navigate to your App Service, and then go to Configuration > General Settings. Under the "Startup command" field, enter the following command and click "Save" to apply the changes.
 ```
 startup.txt
 ```
 
-#### 2.3 Update the Web App Configuration with Keys and Secrets
+### 2.3 Update the Web App Configuration with Keys and Secrets
 
 In the Azure portal, navigate to your App Service, and then go to Configuration > Application settings. Add the following keys and their respective values. Make sure to replace the placeholder values with your actual keys and secrets. Click "Save" to apply the changes.
 
