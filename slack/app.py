@@ -10,10 +10,13 @@ from functions import draft_email
 import logging
 from functools import wraps
 import time
+import sys
 
 # Configure the logging level and format
 logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s"
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    stream=sys.stdout,
 )
 
 # Load environment variables from .env file

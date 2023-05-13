@@ -69,13 +69,11 @@ Follow these steps to update the workflow file:
     creds: ${{ secrets.AZURE_CREDENTIALS }}
 ```
 
-2. **Create the service principal**: To create a service principal, run the following command in the Azure Cloud Shell, replacing `<YOUR-SUBSCRIPTION-ID>` with your actual subscription ID (Home > Subscriptions):
+2. **Create the service principal**: To create a service principal, run the following command in the Azure Cloud Shell, replacing `<YOUR-SUBSCRIPTION-ID>` with your actual subscription ID (Home > Subscriptions). This command will output a JSON object containing the necessary credentials, such as `clientId`, `clientSecret`, `subscriptionId`, and `tenantId`.
 
 ```bash
 az ad sp create-for-rbac --name "mySlackBotApp" --role contributor --scopes /subscriptions/<YOUR-SUBSCRIPTION-ID> --sdk-auth
 ```
-
-This command will output a JSON object containing the necessary credentials, such as `clientId`, `clientSecret`, `subscriptionId`, and `tenantId`.
 
 3. **Update Azure credentials in GitHub Actions secrets**: In your GitHub repository, navigate to the "Settings" tab and then click on "Secrets and variables > Actions" in the left sidebar. Create a new repository secret named `AZURE_CREDENTIALS` and paste the JSON object you obtained in the previous step as its value.
 
