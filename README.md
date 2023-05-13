@@ -23,7 +23,7 @@ Follow these steps to set up your Azure account and deploy your Slack bot:
 
 2. **Create a Resource Grou**p: A resource group helps you organize and manage resources based on their lifecycle and their relationship to each other. In the Azure Portal, create a new resource group called `LangChain-Experiments`.
 
-3. **Create an App Service**: An App Service is a fully managed platform for building, deploying, and scaling your web apps. In the Azure Portal, create a new App Service and associate it with the `LangChain-Experiments` resource group. Select an appropriate App Service Plan based on your needs.
+3. **Create an App Service**: An App Service is a fully managed platform for building, deploying, and scaling your web apps. In the Azure Portal, create a new App Service and associate it with the `LangChain-Experiments` resource group. Set publish to `Code`, and select the correct `Python` version and your `Region`. Finally, select an appropriate App Service Plan based on your needs. There is a free plan available.
 
 4. **Deploy via GitHub repo**: In the Azure Deployment Center, connect your GitHub repository to your App Service. This will enable continuous integration and deployment, so your app will be automatically updated whenever you push changes to the specified branch. Make sure to select the correct branch.
 
