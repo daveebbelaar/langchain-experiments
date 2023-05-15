@@ -74,6 +74,7 @@ pip install slack-sdk slack-bolt Flask
 SLACK_BOT_TOKEN = "xoxb-your-token"
 SLACK_SIGNING_SECRET = "your-secret"
 SLACK_BOT_USER_ID = "your-bot-id"
+OPENAI_API_KEY= "your-openai-key"
 ```
 
 #### 4. Start your local Flask server
