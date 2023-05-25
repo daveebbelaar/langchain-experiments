@@ -1,0 +1,14 @@
+version: '3.1'
+
+services:
+    flowise:
+        image: flowiseai/flowise
+        restart: always
+        environment:
+            - PORT=${PORT}
+        ports:
+            - '${PORT}:${PORT}'
+        volumes:
+            - ~/.flowise:/root/.flowise
+        command: /bin/sh -c "sleep 3; flowise start"
+        
