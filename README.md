@@ -36,7 +36,7 @@ The OpenAI API is powered by a diverse set of [models](https://platform.openai.c
 #### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/langchain-experiments.git
+git clone https://github.com/daveebbelaar/langchain-experiments.git
 ```
 
 #### 2. Create a Python environment
