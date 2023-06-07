@@ -66,7 +66,7 @@ pip install -r requirements.txt
 First, create a `.env` file in the root directory of the project. Inside the file, add your OpenAI API key:
 
 ```makefile
-OPENAI_API_KEY=your_api_key_here
+OPENAI_API_KEY="your_api_key_here"
 ```
 
 Save the file and close it. In your Python script or Jupyter notebook, load the `.env` file using the following code:
