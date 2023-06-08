@@ -83,9 +83,6 @@ print(wrapped_text)
 # Load an OpenAI model for comparison
 # --------------------------------------------------------------
 
-text_splitter = RecursiveCharacterTextSplitter(chunk_size=3000)
-docs = text_splitter.split_documents(transcript)
-
 openai_llm = OpenAI(
     model_name="text-davinci-003", temperature=0.1, max_tokens=500
 )  # max token length is 4097
