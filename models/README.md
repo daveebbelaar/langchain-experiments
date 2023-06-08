@@ -2,18 +2,9 @@
 
 This repository contains an experiment comparing the Falcon-7B language model, accessed through the Hugging Face Model Hub, and OpenAI's text-davinci-003 model. The experiment is set up using the LangChain framework and involves a series of basic question tests followed by a text summarization task.
 
-## Background Information
-
-### Falcon-7B Model
+## Falcon-7B Model
 
 The Falcon-7B model, created by the Technology Innovation Institute in Abu Dhabi, is a state-of-the-art language model that rivals many current closed-source models. It is part of the Falcon family of models, which also includes the Falcon-40B model. The Falcon-7B model requires ~15GB of GPU memory, making it accessible for inference and fine-tuning even on consumer hardware. It has been trained on a massive web dataset called RefinedWeb, which comprises over 80% of its training data. The model uses a technique called multiquery attention, which improves the scalability of inference by reducing memory costs and enabling novel optimizations such as statefulness​[^1].
-
-### text-davinci-003 Model
-The text-davinci-003 model is an improvement over its predecessor, text-davinci-002. It is better at producing high-quality writing, handling complex instructions, and generating longer-form content​[^2].
-
-### LangChain
-LangChain is a framework for developing applications powered by language models. It connects a language model to other sources of data and allows the model to interact with its environment. The LangChain framework provides components necessary to work with language models and use-case specific chains that assemble these components to accomplish a particular use case​[^3]​.
-
 
 
 ## Setting Up the Experiment
