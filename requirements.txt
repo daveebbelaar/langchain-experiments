@@ -8,3 +8,4 @@ chromadb
 tiktoken
 faiss-cpu
 wikipedia
+transformers
