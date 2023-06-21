@@ -1,5 +1,8 @@
+-e .
 python-dotenv
 langchain
+langchain[llms]
+langchain[all]
 openai
 google-api-python-client # Google API
 google-search-results # SerpAPI
@@ -8,3 +11,11 @@ chromadb
 tiktoken
 faiss-cpu
 wikipedia
+black
+mypy
+openai
+pre-commit
+pytest
+ruff
+termcolor
+typer
