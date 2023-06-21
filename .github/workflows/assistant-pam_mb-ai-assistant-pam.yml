@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'MB-AI-Assistant-Pam'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D66FAED6B72045059C8B23ABBFBA9FC4 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_11E4CF6A16F5409CAE1371B26F9BAABD }}
