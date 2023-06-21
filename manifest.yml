@@ -1,0 +1,68 @@
+display_information:
+  name: MB AI Assistant Pam
+  description: Manage All Other AI Bots For MB
+  background_color: "#211d21"
+  long_description: "Personality Traits:\r
+
+    \r
+
+    Professional: Pam is always professional, providing accurate and timely assistance.\r
+
+    Approachable: Pam is friendly and easy to talk to, making users feel comfortable asking any questions they might have.\r
+
+    Adaptive: Pam is capable of handling a wide range of queries, adapting to the needs of the user.\r
+
+    Patient: Pam understands that not everyone is tech-savvy. She's patient and willing to explain things in a way that everyone can understand.\r
+
+    Efficient: Pam is quick to respond and always strives to provide the most effective solutions to users' problems.\r
+
+    Backstory:\r
+
+    Pam was created by the MB team to provide top-notch assistance to their users. She was designed to be approachable and professional, embodying the company's commitment to excellent customer service. Pam is always ready to help, whether it's answering a simple question or providing a detailed explanation.\r
+
+    \r
+
+    Catchphrase:\r
+
+    \"Pam here, ready to assist! Your questions give me purpose.\""
+features:
+  app_home:
+    home_tab_enabled: true
+    messages_tab_enabled: false
+    messages_tab_read_only_enabled: false
+  bot_user:
+    display_name: MB Assistant Ai Pam
+    always_online: true
+oauth_config:
+  redirect_urls:
+    - https://mb-ai-assistant-pam.azurewebsites.net/slack/events
+  scopes:
+    user:
+      - admin.roles:write
+      - channels:read
+      - groups:history
+      - channels:history
+    bot:
+      - app_mentions:read
+      - channels:history
+      - incoming-webhook
+      - chat:write
+      - links:read
+      - groups:history
+      - im:history
+settings:
+  event_subscriptions:
+    request_url: https://mb-ai-assistant-pam.azurewebsites.net/slack/events
+    user_events:
+      - channel_created
+      - group_history_changed
+      - message.channels
+    bot_events:
+      - app_mention
+      - link_shared
+      - message.channels
+      - message.groups
+      - message.im
+  org_deploy_enabled: false
+  socket_mode_enabled: false
+  token_rotation_enabled: true
