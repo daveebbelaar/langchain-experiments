@@ -4,4 +4,5 @@ openai
 google-search-results
 matplotlib
 pandas
+openpyxl
 tabulate

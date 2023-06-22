@@ -3,6 +3,11 @@
 This repository contains the script for performing exploratory data analysis using Pandas Dataframe Agent from Langchain. Instead of manually doing EDA, the agent takes a prompt, 
 decides on the code to do data analysis, and returns the answer. The use case also includes EDA for multiple dataframes. 
 
+What you need to follow this tutotial:
+1. Understand how Python works
+2. Understand how LangChain works
+3. OpenAI API key (GPT4 is not required)
+s
 
 ## What Are LangChain Agents?
 

@@ -41,9 +41,11 @@ agent.run(
 # Download dataset at: https://www.kaggle.com/datasets/arnabchaki/data-science-salaries-2023
 # --------------------------------------------------------------
 
-df = pd.read_csv("../data/ds_salaries.csv")
+# Example with CSV
 df = pd.read_csv("../data/ds_salaries.csv")
 
+# Example with Excel
+df = pd.read_excel("../data/ds_salaries.xlsx")
 
 # --------------------------------------------------------------
 # Initialize pandas dataframe agent
