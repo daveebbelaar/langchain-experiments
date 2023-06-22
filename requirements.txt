@@ -10,10 +10,4 @@ tiktoken
 faiss-cpu
 wikipedia
 black
-mypy
-openai
-pre-commit
-pytest
-ruff
-termcolor
 typer
