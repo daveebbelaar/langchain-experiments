@@ -2,7 +2,8 @@ from langchain.chat_models import ChatOpenAI
 from langchain.chains import LLMChain
 from dotenv import find_dotenv, load_dotenv
 from langchain.prompts.chat import (
-    ChatPromptTemplate,
+from functions import draft_email 
+     ChatPromptTemplate,
     SystemMessagePromptTemplate,
     HumanMessagePromptTemplate,
 )
@@ -10,8 +11,9 @@ from langchain.prompts.chat import (
 load_dotenv(find_dotenv())
 
 
-def draft_email(user_input, name="Ben"):
+def draft_email(user_input, name="MB Banks"):
     chat = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=1)
+    
 
     template = """
     
