@@ -59,15 +59,11 @@ agent = create_pandas_dataframe_agent(llm, df, verbose=True)
 # --------------------------------------------------------------
 
 agent.run("how many rows and columns are there in the dataset?")
-agent.run("how many rows and columns are there in the dataset?")
 
-agent.run("are there any missing values?")
 agent.run("are there any missing values?")
 
 agent.run("what are the columns?")
-agent.run("what are the columns?")
 
-agent.run("how many categories are in each column?")
 agent.run("how many categories are in each column?")
 
 
@@ -76,12 +72,9 @@ agent.run("how many categories are in each column?")
 # --------------------------------------------------------------
 
 agent.run("which are the top 5 jobs that have the highest median salary?")
-agent.run("which are the top 5 jobs that have the highest median salary?")
 
 agent.run("what is the percentage of data scientists who are working full time?")
-agent.run("what is the percentage of data scientists who are working full time?")
 
-agent.run("which company location has the most employees working remotely?")
 agent.run("which company location has the most employees working remotely?")
 
 agent.run("what is the most frequent job position for senior-level employees?")
@@ -90,16 +83,8 @@ agent.run(
     "what are the categories of company size? What is the proportion of employees they have? What is the total salary they pay for their employees?"
 )
 agent.run(
-    "what are the categories of company size? What is the proportion of employees they have? What is the total salary they pay for their employees?"
-)
-
-agent.run(
     "get median salaries of senior-level data scientists for each company size and plot them in a bar plot."
 )
-agent.run(
-    "get median salaries of senior-level data scientists for each company size and plot them in a bar plot."
-)
-
 
 # --------------------------------------------------------------
 # Initialize an agent with multiple dataframes
@@ -107,35 +92,20 @@ agent.run(
 
 df_2022 = df[df["work_year"] == 2022]
 df_2023 = df[df["work_year"] == 2023]
-df_2022 = df[df["work_year"] == 2022]
-df_2023 = df[df["work_year"] == 2023]
 
 agent = create_pandas_dataframe_agent(llm, [df_2022, df_2023], verbose=True)
-
 
 # --------------------------------------------------------------
 # Perform basic & multiple-steps data exploration for both dataframes
 # --------------------------------------------------------------
 
 agent.run("how many rows and columns are there for each dataframe?")
-agent.run("how many rows and columns are there for each dataframe?")
 
 agent.run(
     "what are the differences in median salary for data scientists among the dataframes?"
 )
 agent.run(
-    "what are the differences in median salary for data scientists among the dataframes?"
-)
-
-agent.run(
     "how many people were hired for each of the dataframe? what are the percentages of experience levels?"
-)
-agent.run(
-    "how many people were hired for each of the dataframe? what are the percentages of experience levels?"
-)
-
-agent.run(
-    "what is the median salary of senior data scientists for df2, given there is a 10% increment?"
 )
 agent.run(
     "what is the median salary of senior data scientists for df2, given there is a 10% increment?"
