@@ -7,7 +7,7 @@ What you need to follow this tutotial:
 1. Understand how Python works
 2. Understand how LangChain works
 3. OpenAI API key (GPT4 is not required)
-s
+
 
 ## What Are LangChain Agents?
 
