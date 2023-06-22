@@ -1,0 +1,7 @@
+python-dotenv
+langchain
+openai
+google-search-results
+matplotlib
+pandas
+tabulate
