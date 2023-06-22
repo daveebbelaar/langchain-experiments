@@ -132,14 +132,14 @@ Below is a brief description of the key steps in the code:
 8. Compare the output from Step 2 and Step 3.
 
 
-[^1]: https://python.langchain.com/en/latest/modules/agents.html
-[^2]: https://python.langchain.com/en/latest/modules/agents/agents/agent_types.html
+[^1]: https://python.langchain.com/docs/modules/agents/
+[^2]: https://python.langchain.com/docs/modules/agents/agent_types/
 [^3]: https://arxiv.org/pdf/2210.03629.pdf
-[^4]: https://python.langchain.com/en/latest/reference/modules/docstore.html
+[^4]: https://python.langchain.com/docs/modules/data_connection/
 [^5]: https://ofir.io/self-ask.pdf
-[^6]: https://python.langchain.com/en/latest/modules/agents/tools.html
-[^7]: https://python.langchain.com/en/latest/modules/agents/agents/examples/self_ask_with_search.html
-[^8]: https://python.langchain.com/en/latest/modules/agents.html
-[^9]: https://python.langchain.com/en/latest/modules/agents/toolkits.html
-[^10]: https://python.langchain.com/en/latest/modules/agents/toolkits/examples/pandas.html
+[^6]: https://python.langchain.com/docs/modules/agents/tools/
+[^7]: https://python.langchain.com/docs/modules/agents/agent_types/self_ask_with_search
+[^8]: https://python.langchain.com/docs/modules/agents/
+[^9]: https://python.langchain.com/docs/modules/agents/toolkits/
+[^10]: https://python.langchain.com/docs/modules/agents/toolkits/pandas
 [^11]: https://www.kaggle.com/datasets/arnabchaki/data-science-salaries-2023
