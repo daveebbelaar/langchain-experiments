@@ -2,10 +2,10 @@ from langchain.chat_models import ChatOpenAI
 from langchain.chains import LLMChain
 from dotenv import find_dotenv, load_dotenv
 from langchain.prompts.chat import (
-from functions import draft_email 
      ChatPromptTemplate,
     SystemMessagePromptTemplate,
     HumanMessagePromptTemplate,
+from functions import draft_email 
 )
 
 load_dotenv(find_dotenv())
