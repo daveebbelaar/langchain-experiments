@@ -20,11 +20,11 @@ jobs:
       - name: Set up Python version
         uses: actions/setup-python@v1
         with:
-          python-version: '3.8'
+          python-version: '3.9'
 
       - name: Create and start virtual environment
         run: |
-          python -m venv venv
+          python -m venv aipam
           source venv/bin/activate
       
       - name: Install dependencies
