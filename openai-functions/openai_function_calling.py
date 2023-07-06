@@ -103,6 +103,7 @@ def get_flight_info(loc_origin, loc_destination):
 origin = json.loads(output.function_call.arguments).get("loc_origin")
 destination = json.loads(output.function_call.arguments).get("loc_destination")
 params = json.loads(output.function_call.arguments)
+type(params)
 
 print(origin)
 print(destination)
@@ -268,7 +269,8 @@ user_prompt = """
 This is Jane Harris. I am an unhappy customer that wants you to do several things.
 First, I neeed to know when's the next flight from Amsterdam to New York.
 Please proceed to book that flight for me.
-Also, I want to file a complaint about my missed flight. It was an unpleasant surprise. Email me a copy of the complaint to jane@harris.com.
+Also, I want to file a complaint about my missed flight. It was an unpleasant surprise. 
+Email me a copy of the complaint to jane@harris.com.
 Please give me a confirmation after all of these are done.
 """
 
@@ -287,7 +289,7 @@ second_response = llm.predict_messages(
     [
         HumanMessage(content=user_prompt),
         AIMessage(content=str(first_response.additional_kwargs)),
-        ChatMessage(
+        AIMessage(
             role="function",
             additional_kwargs={
                 "name": first_response.additional_kwargs["function_call"]["name"]
@@ -307,7 +309,7 @@ third_response = llm.predict_messages(
         HumanMessage(content=user_prompt),
         AIMessage(content=str(first_response.additional_kwargs)),
         AIMessage(content=str(second_response.additional_kwargs)),
-        ChatMessage(
+        AIMessage(
             role="function",
             additional_kwargs={
                 "name": second_response.additional_kwargs["function_call"]["name"]
@@ -328,7 +330,7 @@ fourth_response = llm.predict_messages(
         AIMessage(content=str(first_response.additional_kwargs)),
         AIMessage(content=str(second_response.additional_kwargs)),
         AIMessage(content=str(third_response.additional_kwargs)),
-        ChatMessage(
+        AIMessage(
             role="function",
             additional_kwargs={
                 "name": third_response.additional_kwargs["function_call"]["name"]
