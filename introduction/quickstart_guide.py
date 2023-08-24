@@ -7,6 +7,7 @@ from langchain.agents import initialize_agent
 from langchain.agents import AgentType
 from langchain.agents.load_tools import get_all_tool_names
 from langchain import ConversationChain
+from langchain.chat_models import ChatOpenAI
 
 # Load environment variables
 load_dotenv(find_dotenv())
@@ -44,6 +45,13 @@ prompt = PromptTemplate(
 chain = LLMChain(llm=llm, prompt=prompt)
 print(chain.run("AI Chatbots for Dental Offices"))
 
+prompt = PromptTemplate(
+    input_variables=["topic"],
+    template="Write an email subject for this topic {topic}?",
+)
+
+chain = LLMChain(llm=llm, prompt=prompt)
+print(chain.run("AI Session"))
 
 # --------------------------------------------------------------
 # Agents: Dynamically Call Chains Based on User Input
@@ -66,6 +74,18 @@ result = agent.run(
 )
 print(result)
 
+# Now let's test it out!
+result = agent.run(
+    "In what year was Tesla released and who is the original creator? Multiply the year by 3"
+)
+print(result)
+
+# Now let's test it out!
+result = agent.run(
+    "In what year was Tesla born? and who is the original creator? Multiply the year by 3"
+)
+print(result)
+
 
 # --------------------------------------------------------------
 # Memory: Add State to Chains and Agents
@@ -81,3 +101,10 @@ output = conversation.predict(
     input="I'm doing well! Just having a conversation with an AI."
 )
 print(output)
+
+# --------------------------------------------------------------
+# Chatmodels: Create Conversational Agents
+# --------------------------------------------------------------
+
+llm = OpenAI()
+chat_model = ChatOpenAI()

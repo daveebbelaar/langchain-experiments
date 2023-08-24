@@ -20,7 +20,7 @@ def create_db_from_youtube_video_url(video_url):
     loader = YoutubeLoader.from_youtube_url(video_url)
     transcript = loader.load()
 
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=2000, chunk_overlap=100)
     docs = text_splitter.split_documents(transcript)
 
     db = FAISS.from_documents(docs, embeddings)
@@ -28,15 +28,10 @@ def create_db_from_youtube_video_url(video_url):
 
 
 def get_response_from_query(db, query, k=4):
-    """
-    gpt-3.5-turbo can handle up to 4097 tokens. Setting the chunksize to 1000 and k to 4 maximizes
-    the number of tokens to analyze.
-    """
-
     docs = db.similarity_search(query, k=k)
     docs_page_content = " ".join([d.page_content for d in docs])
 
-    chat = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0.2)
+    chat = ChatOpenAI(model_name="gpt-3.5-turbo-16k", temperature=0.2)
 
     # Template to use for the system message prompt
     template = """
@@ -47,7 +42,6 @@ def get_response_from_query(db, query, k=4):
         
         If you feel like you don't have enough information to answer the question, say "I don't know".
         
-        Your answers should be verbose and detailed.
         """
 
     system_message_prompt = SystemMessagePromptTemplate.from_template(template)
@@ -68,9 +62,9 @@ def get_response_from_query(db, query, k=4):
 
 
 # Example usage:
-video_url = "https://www.youtube.com/watch?v=L_Guz73e6fw"
+video_url = "https://www.youtube.com/watch?v=th4j9JxWGko"
 db = create_db_from_youtube_video_url(video_url)
 
-query = "What are they saying about Microsoft?"
+query = "what is this video about?"
 response, docs = get_response_from_query(db, query)
 print(textwrap.fill(response, width=50))

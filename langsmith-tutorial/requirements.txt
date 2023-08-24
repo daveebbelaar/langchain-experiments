@@ -1,0 +1,7 @@
+python-dotenv
+langchain
+openai
+nest_asyncio
+pandas 
+tiktoken
+rapidfuzz
