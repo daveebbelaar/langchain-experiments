@@ -23,6 +23,7 @@ os.environ["LANGCHAIN_TRACING_V2"] = "true"
 os.environ["LANGCHAIN_ENDPOINT"] = "https://api.smith.langchain.com"
 os.environ["LANGCHAIN_PROJECT"] = "langsmith-tutorial"
 
+
 # --------------------------------------------------------------
 # LangSmith Quick Start
 # Load the LangSmith Client and Test Run
@@ -31,7 +32,7 @@ os.environ["LANGCHAIN_PROJECT"] = "langsmith-tutorial"
 client = Client()
 
 llm = ChatOpenAI()
-llm.predict("Hello, world!")
+llm.predict("What can you do?")
 
 # --------------------------------------------------------------
 # Evaluation Quick Start
@@ -126,14 +127,14 @@ for input_prompt, output_answer in example_inputs:
 
 dataset_name = "Example Dataset"
 
+dataset = client.create_dataset(dataset_name, description="An example dataset")
+
 # Filter runs to add to the dataset
 runs = client.list_runs(
-    project_name="evaluators",
+    project_name="langsmith-tutorial",
     execution_order=1,
     error=False,
 )
-
-dataset = client.create_dataset(dataset_name, description="An example dataset")
 
 for run in runs:
     client.create_example(
