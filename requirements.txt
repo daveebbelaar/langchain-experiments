@@ -8,3 +8,6 @@ chromadb
 tiktoken
 faiss-cpu
 wikipedia
+psycopg2
+pinecone-client
+pgvector
