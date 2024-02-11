@@ -3,14 +3,9 @@
 # --------------------------------------------------------------
 
 from dotenv import find_dotenv, load_dotenv
-from langchain import OpenAI
-from langchain.agents import (
-    load_tools,
-    initialize_agent,
-    create_pandas_dataframe_agent,
-    Tool,
-    AgentType,
-)
+from langchain_openai import OpenAI, ChatOpenAI
+from langchain_experimental.agents.agent_toolkits import create_pandas_dataframe_agent
+from langchain.agents import AgentType, initialize_agent, load_tools
 
 import pandas as pd
 
@@ -25,7 +20,7 @@ load_dotenv(find_dotenv())
 # Use Serp API Tool to ask question
 # --------------------------------------------------------------
 
-llm = OpenAI(model="text-davinci-003", temperature=0)
+llm = OpenAI(model="davinci-002", temperature=0)
 tools = load_tools(["serpapi", "llm-math"], llm=llm)
 agent = initialize_agent(
     tools, llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION, verbose=True
@@ -51,6 +46,7 @@ df = pd.read_excel("../data/ds_salaries.xlsx")
 # Initialize pandas dataframe agent
 # --------------------------------------------------------------
 
+llm = ChatOpenAI(temperature=0, model="gpt-4-1106-preview")
 agent = create_pandas_dataframe_agent(llm, df, verbose=True)
 
 
